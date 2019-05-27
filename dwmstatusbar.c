@@ -64,16 +64,22 @@ int main(int argc __attribute__((unused)), char *argv[] __attribute__((unused)))
 
             /* check internet availability */
             /*
-            if ((fd = open("/proc/net/route", O_RDONLY)) != -1)
+            if (strcmp(lnk, "up") == 0)
             {
-                char rbuf[128], *rstr = NULL;
+                if ((fd = open("/proc/net/route", O_RDONLY)) != -1)
+                {
+                    char rbuf[128], *rstr = NULL;
 
-                while (read(fd, rbuf, sizeof rbuf) > 0 &&
-                       (rstr = strstr(rbuf, IFACE "\t00000000")) == NULL)
-                    ;
-                close(fd);
-                if ((strcmp(lnk, "up") == 0) && rstr == NULL)
-                    strcat(lnk, "*");
+                    rbuf[sizeof rbuf - 1] = '\0';
+
+                    while (read(fd, rbuf, sizeof rbuf - 1) > 0 &&
+                           (rstr = strstr(rbuf, IFACE "\t00000000")) == NULL)
+                        ;
+                    close(fd);
+
+                    if (rstr == NULL)
+                        strcat(lnk, "*");
+                }
             }
             */
 
