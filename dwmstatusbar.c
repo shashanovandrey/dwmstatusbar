@@ -9,10 +9,10 @@ gcc -O2 -s -lX11 -o dwmstatusbar dwmstatusbar.c
 
 #include <locale.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
 #include <string.h>
 #include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include <X11/Xlib.h>
 
 #define IFACE "wlp3s0"
@@ -61,27 +61,6 @@ int main(int argc __attribute__((unused)), char *argv[] __attribute__((unused)))
             }
             else
                 lnk[0] = '\0';
-
-            /* check internet availability */
-            /*
-            if (strcmp(lnk, "up") == 0)
-            {
-                if ((fd = open("/proc/net/route", O_RDONLY)) != -1)
-                {
-                    char rbuf[128], *rstr = NULL;
-
-                    rbuf[sizeof rbuf - 1] = '\0';
-
-                    while (read(fd, rbuf, sizeof rbuf - 1) > 0 &&
-                           (rstr = strstr(rbuf, IFACE "\t00000000")) == NULL)
-                        ;
-                    close(fd);
-
-                    if (rstr == NULL)
-                        strcat(lnk, "*");
-                }
-            }
-            */
 
             count_1 = SLEEP_1;
         }
