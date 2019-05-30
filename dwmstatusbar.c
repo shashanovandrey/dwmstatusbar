@@ -25,7 +25,7 @@ gcc -O2 -s -lX11 -o dwmstatusbar dwmstatusbar.c
 #define SLEEP_1 2  /* SLEEP_SEC * SLEEP_1 */
 #define SLEEP_2 12 /* SLEEP_SEC * SLEEP_2 */
 
-int main(int argc __attribute__((unused)), char *argv[] __attribute__((unused)))
+int main(void)
 {
     Display *dpy;
     Window w;
