@@ -29,8 +29,8 @@ int main(void)
 {
     Display *dpy;
     Window w;
-    size_t count_1 = 1, count_2 = 1;
-    struct timespec ts = {SLEEP_SEC, 0};
+    size_t count_1, count_2;
+    struct timespec ts;
 
     /* setlocale(LC_TIME, "ru_RU.UTF-8"); */
 
@@ -38,6 +38,12 @@ int main(void)
         return EXIT_FAILURE;
 
     w = DefaultRootWindow(dpy);
+
+    ts.tv_sec = SLEEP_SEC;
+    ts.tv_nsec = 0;
+
+    count_1 = 1;
+    count_2 = 1;
 
     for (;; nanosleep(&ts, NULL))
     {
@@ -50,6 +56,8 @@ int main(void)
 
         if (!(--count_1))
         {
+            count_1 = SLEEP_1;
+
             if ((fd = open(PATH_LINK, O_RDONLY)) != -1)
             {
                 if ((n = read(fd, lnk, sizeof lnk)) > 0)
@@ -61,12 +69,12 @@ int main(void)
             }
             else
                 lnk[0] = '\0';
-
-            count_1 = SLEEP_1;
         }
 
         if (!(--count_2))
         {
+            count_2 = SLEEP_2;
+
             if ((fd = open(PATH_CAPACITY, O_RDONLY)) != -1)
             {
                 if ((n = read(fd, capacity, sizeof capacity)) > 0)
@@ -78,8 +86,6 @@ int main(void)
             }
             else
                 capacity[0] = '\0';
-
-            count_2 = SLEEP_2;
         }
 
         timer = time(NULL);
