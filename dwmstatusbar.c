@@ -21,9 +21,9 @@ gcc -O2 -s -lX11 -o dwmstatusbar dwmstatusbar.c
 #define PATH_LINK "/sys/class/net/" IFACE "/operstate"
 #define PATH_CAPACITY "/sys/class/power_supply/" BATTERY "/capacity"
 #define DATETIME_FORMAT "  %Y-%m-%d %a %H:%M"
-#define SLEEP_SEC 10
+#define SLEEP_SEC 5
 #define SLEEP_1 2  /* SLEEP_SEC * SLEEP_1 */
-#define SLEEP_2 12 /* SLEEP_SEC * SLEEP_2 */
+#define SLEEP_2 24 /* SLEEP_SEC * SLEEP_2 */
 
 int main(void)
 {
