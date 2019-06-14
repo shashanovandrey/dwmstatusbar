@@ -29,8 +29,8 @@ int main(void)
 {
     Display *dpy;
     Window w;
-    size_t count_1, count_2;
     struct timespec ts;
+    size_t count_1, count_2;
 
     /* setlocale(LC_TIME, "ru_RU.UTF-8"); */
 
